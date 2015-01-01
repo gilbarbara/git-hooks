@@ -15,9 +15,8 @@ fi
 
 install_hook() {
 	hook_name="$1"
-	[[ -f "$tracked_dir/$hook_name" ]] && echo $hook_name 'exist'
-	if [[ -f "$tracked_dir/$hook_name" ]]; then
-		puts "Installing '$hook_name' hooks ..." >&2
+	if [[ -f "$tracked_dir/$hook_name" && ! -h $hook_dir/$hook_name ]]; then
+		puts "Installing '$hook_name' hook ..." >&2
 
 		if [ ! -h $hook_dir/$hook_name -a -x $hook_dir/$hook_name ]; then
 			puts "Moving original '$hook_name' to '$hook_name.local' ..." >&2

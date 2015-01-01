@@ -12,11 +12,11 @@ check_run() {
 # Example usage
 # In this example it's used to run `npm install` if package.json changed and `bower install` if `bower.json` changed.
 if check_run package.json; then
-	puts "package.json has changed" >&2
+	echo "package.json has changed. Installing"
 	npm install && npm prune
 fi
 
 if check_run bower.json; then
-	echo "bower.json has changed"
+	echo "bower.json has changed. Installing"
 	bower install && bower prune
 fi
